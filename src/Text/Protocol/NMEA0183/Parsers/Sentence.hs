@@ -1,6 +1,7 @@
 module Text.Protocol.NMEA0183.Parsers.Sentence where
 
 import Control.Applicative
+import Data.Char
 import qualified Data.Text as T
 import Text.Protocol.NMEA0183.Types.Talker
 import Text.Parser.Char
@@ -48,6 +49,16 @@ parseTalkerId = do
 parseSentenceIdentifier :: CharParsing m => m T.Text
 parseSentenceIdentifier = T.pack <$> count 3 upper
 
+parseChecksum :: (CharParsing m, Monad m) => m (Char, Char)
+parseChecksum = do
+  _ <- char ','
+  _ <- char '*'
+  (,) <$> upperHexDigit <*> upperHexDigit
+  where
+    upperHexDigit =
+      satisfy (\c -> (isHexDigit c && isUpper c) || isDigit c)
+      <?> "uppercase hexadecimal digit"
+
 -- | Parse a NMEA 0183 sentence. The idea is to use this like
 -- @parseSentence parseGGA :: Parser (TalkerSentence GGA)@
 parseSentence :: (CharParsing m, Monad m) => m a -> m (TalkerSentence a)
@@ -57,7 +68,10 @@ parseSentence f = do
   sentenceIdentifier <- parseSentenceIdentifier
   _ <- char ','
   dataFields <- f
+  checksum <- optional parseChecksum
+  _ <- char '\r'
+  _ <- char '\n'
   TalkerSentence <$> pure talkerId
                  <*> pure sentenceIdentifier
                  <*> pure dataFields
-                 <*> pure Nothing
+                 <*> pure checksum

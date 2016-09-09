@@ -31,7 +31,7 @@ instance Show GPSQuality where
 
 data GGA =
   GGA {
-    _time :: T.Text -- TODO: UTCTime
+    _time :: Double -- TODO: UTCTime
   , _latitude :: GGALatitude
   , _northSouth :: GGANorthSouth
   , _longitude :: GGALongitude
@@ -43,13 +43,13 @@ data GGA =
   , _antennaAltitudeUnits :: Char
   , _geoidalSeparation :: Double
   , _geoidalSeparationUnits :: Char
-  , _dGPSAge :: Maybe Double
+  , _dGPSAge :: Maybe Int
   , _dGPSReferenceStationID :: Maybe T.Text
   } deriving (Eq, Ord)
 
 instance Show GGA where
   show (GGA a b c d e f g h i j k l m n) =
-    T.unpack a ++ "," ++ show b ++ "," ++ show c ++ "," ++ show d ++ "," ++
+    show a ++ "," ++ show b ++ "," ++ show c ++ "," ++ show d ++ "," ++
     show e ++ "," ++ show f ++ "," ++ show g ++ "," ++ show h ++ "," ++
     show i ++ "," ++ show j ++ "," ++ show k ++ "," ++ show l ++ "," ++
     maybe "" show m ++ "," ++ maybe "" T.unpack n

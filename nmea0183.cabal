@@ -17,9 +17,12 @@ library
   exposed-modules:     Text.Protocol.NMEA0183.Types.Talker
                      , Text.Protocol.NMEA0183.Types.Talker.GGA
                      , Text.Protocol.NMEA0183.Parsers.Sentence
+                     , Text.Protocol.NMEA0183.Parsers.Talker.GGA
   -- other-modules:
   -- other-extensions:
   build-depends:       base >= 4 && < 5
+                       -- for testing for now
+                     , attoparsec
                      , parsers
                      , text
   hs-source-dirs:      src

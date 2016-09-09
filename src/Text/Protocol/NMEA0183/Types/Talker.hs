@@ -44,7 +44,7 @@ data TalkerSentence a =
     _talkerIdentifier :: TalkerIdentifier
   , _sentenceIdentifier :: T.Text
   , _dataFields :: a
-  , _checksum :: Maybe T.Text
+  , _checksum :: Maybe (Char, Char)
   } deriving (Eq, Ord)
 
 instance Show a => Show (TalkerSentence a) where
