@@ -6,6 +6,7 @@ A Haskell library for parsing, emitting, and manipulating NMEA0183 packets.
 
 ```haskell
 > :set -XOverloadedStrings
+> import Control.Lens
 > import Data.Attoparsec.Text
 > import Text.Protocol.NMEA0183.Types.Talker.GGA
 > import Text.Protocol.NMEA0183.Parsers.Sentence
