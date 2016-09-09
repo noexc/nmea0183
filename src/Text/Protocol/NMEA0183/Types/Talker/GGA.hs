@@ -3,16 +3,16 @@ module Text.Protocol.NMEA0183.Types.Talker.GGA where
 import Data.Maybe (maybe)
 import qualified Data.Text as T
 
-data NorthSouth = N | S deriving (Eq, Ord, Show)
-data EastWest = E | W deriving (Eq, Ord, Show)
-data Latitude = Latitude Double deriving (Eq, Ord)
-data Longitude = Longitude Double deriving (Eq, Ord)
+data GGANorthSouth = N | S deriving (Eq, Ord, Show)
+data GGAEastWest = E | W deriving (Eq, Ord, Show)
+data GGALatitude = GGALatitude Double deriving (Eq, Ord)
+data GGALongitude = GGALongitude Double deriving (Eq, Ord)
 
-instance Show Latitude where
-  show (Latitude d) = show d
+instance Show GGALatitude where
+  show (GGALatitude d) = show d
 
-instance Show Longitude where
-  show (Longitude d) = show d
+instance Show GGALongitude where
+  show (GGALongitude d) = show d
 
 data GPSQuality =
     FixNotAvailable
@@ -32,10 +32,10 @@ instance Show GPSQuality where
 data GGA =
   GGA {
     _time :: T.Text -- TODO: UTCTime
-  , _latitude :: Latitude
-  , _northSouth :: NorthSouth
-  , _longitude :: Longitude
-  , _eastWest :: EastWest
+  , _latitude :: GGALatitude
+  , _northSouth :: GGANorthSouth
+  , _longitude :: GGALongitude
+  , _eastWest :: GGAEastWest
   , _gpsQuality :: GPSQuality
   , _numSatellites :: Int
   , _horizontalDilution :: Double
