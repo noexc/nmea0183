@@ -16,9 +16,11 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Text.Protocol.NMEA0183.Types.Talker
                      , Text.Protocol.NMEA0183.Types.Talker.GGA
+                     , Text.Protocol.NMEA0183.Parsers.Sentence
   -- other-modules:
   -- other-extensions:
   build-depends:       base >= 4 && < 5
+                     , parsers
                      , text
   hs-source-dirs:      src
   default-language:    Haskell2010
