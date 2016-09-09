@@ -1,5 +1,7 @@
+{-# LANGUAGE TemplateHaskell #-}
 module Text.Protocol.NMEA0183.Types.Talker.GGA where
 
+import Control.Lens
 import Data.Maybe (maybe)
 import qualified Data.Text as T
 
@@ -46,6 +48,8 @@ data GGA =
   , _dGPSAge :: Maybe Int
   , _dGPSReferenceStationID :: Maybe T.Text
   } deriving (Eq, Ord)
+
+makeClassy ''GGA
 
 instance Show GGA where
   show (GGA a b c d e f g h i j k l m n) =

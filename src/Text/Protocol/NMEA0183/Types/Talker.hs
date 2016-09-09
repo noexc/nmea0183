@@ -1,5 +1,10 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE FunctionalDependencies #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TemplateHaskell #-}
 module Text.Protocol.NMEA0183.Types.Talker where
 
+import Control.Lens
 import qualified Data.Text as T
 
 data TalkerIdentifier =
@@ -46,6 +51,8 @@ data TalkerSentence a =
   , _dataFields :: a
   , _checksum :: Maybe (Char, Char)
   } deriving (Eq, Ord)
+
+makeClassy ''TalkerSentence
 
 instance Show a => Show (TalkerSentence a) where
   show (TalkerSentence a b c (Just d)) =

@@ -23,6 +23,7 @@ library
   build-depends:       base >= 4 && < 5
                        -- for testing for now
                      , attoparsec
+                     , lens
                      , parsers
                      , text
   hs-source-dirs:      src
