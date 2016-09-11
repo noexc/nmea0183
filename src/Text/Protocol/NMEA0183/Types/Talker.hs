@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE FunctionalDependencies #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -50,7 +51,7 @@ data TalkerSentence a =
   , _sentenceIdentifier :: T.Text
   , _dataFields :: a
   , _checksum :: Maybe (Char, Char)
-  } deriving (Eq, Ord)
+  } deriving (Eq, Functor, Ord)
 
 makeClassy ''TalkerSentence
 
