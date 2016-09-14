@@ -25,3 +25,8 @@ f :: TalkerSentence GGA
 ## License
 
 BSD-2
+
+
+## Sources
+
+* http://catb.org/gpsd/NMEA.html
